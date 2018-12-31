@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>todolist-prime</title>
+    <link rel="stylesheet" href="css/yuansheng.css">
+    <!-- CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/bootstrap.css" media="screen">
+    <!-- Google Fonts -->
+    <link href='http://f`onts.useso.com/css?family=Titillium+Web' rel='stylesheet' type='text/css'>
+
+</head>
+<body>
+    <header id="top">
+        <section>
+            <label for="add_list">信用度查询</label>
+            
+        </section>
+        <section id="login">
+                <button type="reset" class="btn btn-danger" onclick="App.logout()">注销</button>
+                <button type="submit" class="btn btn-success" onclick="App.login()">登录</button>
+            </section>
+    </header>
+
+    <!-- 用户info section -->
+    <div class="col-lg-4 " id="info">
+        <div class="bs-component">
+            <div class="list-group chuangkou ">
+                <span href="#" class="active list-group-item  ">
+                    用户
+                </span>
+                <span href="#" class="list-group-item">地址：<span  id="ueser1" onclick="edit('ueser1')">未登录</span>
+                </span>
+                <span href="#" class="list-group-item">权限：<span id="ueser2" onclick="edit('ueser2')">请登录</span>
+                <a id="repower" href="#" class="btn btn-success btn-lg tianjia" onclick="App.show_add('requdiv')" style="display:none">申请权限</a>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- add section -->
+    <div class="content">
+        <div class="item">
+            <div class="col-xs-12 smart-margin-bottom-30 item">
+              <button href="#" class="btn btn-block btn-lg btn-info" id="butt1" onclick="App.show('box','butt1')">信用度记录</button>
+            </div> 
+            <section id="box" style="display:none">
+                <p class="bs-component">
+                    <a href="#" class="btn btn-success btn-lg tianjia" onclick="App.show_add('adddiv')">添加条目</a>
+                </p>
+
+                <div class="msf-warp">
+                    <div class="container">
+                    </div>
+                </div>
+                <table  class="table table-striped table-responsive">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>姓名</th>
+                        <th>信用度</th>
+                        <th>记录数</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody id="todolist">
+                    </tbody>
+                </table>
+            </section>
+        </div>
+        
+        <div class="item">
+            <div class="col-xs-12 smart-margin-bottom-20 item">
+              <button href="#" class="btn btn-block btn-lg btn-info" id="butt2" onclick="App.show('box2','butt2')">权限名单</button>
+            </div>
+            <section id="box2" style="display:none">
+                <table  class="table table-striped table-responsive">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>姓名</th>
+                        <th>部门</th>
+                        <th>职务</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody id="rightlist">
+                    </tbody>
+                </table>
+            </section>
+        </div>
+        
+
+        <div class="item">
+            <div class="col-xs-12 smart-margin-bottom-20 item">
+              <button href="#" class="btn btn-block btn-lg btn-info" id="butt3" onclick="App.show('box3','butt3')">权限请求名单</button>
+            </div>
+            <section id="box3" style="display:none">
+                <p class="bs-component">
+                    <a href="#" class="btn btn-success btn-lg tianjia" onclick="App.show_add('requdiv')">申请权限</a>
+
+                </p>
+                <div class="container">
+                    <span id="mig" type="text"></span>
+                </div>
+                <table  class="table table-striped table-responsive">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>申请人</th>
+                        <th>部门</th>
+                        <th>职务</th>
+                        <th>备注</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody id="requlist">
+                    </tbody>
+                </table>
+            </section>
+        </div>
+        
+          
+    <div class="bs-docs-section">
+        <div id="adddiv" class="well bs-component">
+            <form class="form-horizontal">
+                <fieldset>
+                    <legend>添加</legend>
+                    <div class="form-group">
+                        <label for="name" class="col-lg-2 control-label">姓名</label>
+
+                        <div class="col-lg-10">
+                            <input class="form-control" id="name" placeholder="姓名" type="text">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">信用评价</label>
+                        <div class="col-lg-10">
+                            <select class="form-control" id="age">
+                                <option selected="selected">--</option>
+                                <option value="-1">差评</option>
+                                <option value="0">中评</option>
+                                <option value="1">好评</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">交易权重</label>
+                        <div class="col-lg-10">
+                            <select class="form-control" id="power">
+                                <option selected="selected">--</option>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="mark" class="col-lg-2 control-label">备注</label>
+
+                        <div class="col-lg-10">
+                            <textarea class="form-control" rows="3" id="mark"></textarea>
+                            <span class="help-block">信用度变化事件经过记录</span>
+                        </div>
+                    </div>
+                
+                    <div class="form-group">
+                        <div class="col-lg-10 col-lg-offset-2">
+                            <button type="reset" class="btn btn-default btn-danger" onclick="App.hide_add('adddiv')">取消</button>
+                            <button type="submit" class="btn btn-success" onclick="App.add()">添加</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    <div class="bs-docs-section">
+        <div id="requdiv" class="well bs-component">
+            <form class="form-horizontal">
+                <fieldset>
+                    <legend>申请</legend>
+                    <div class="form-group">
+                        <label for="newname" class="col-lg-2 control-label">申请人</label>
+
+                        <div class="col-lg-10">
+                            <input class="form-control" id="newname" placeholder="申请人" type="text">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">部门</label>
+                        <div class="col-lg-10">
+                            <select class="form-control" id="department">
+                                <option selected="selected">--</option>
+                                <option value="0">行政部</option>
+                                <option value="1">财务部</option>
+                                <option value="2">营销部</option>
+                                <option value="3">采购部</option>
+                                <option value="4">物流部</option>
+                                <option value="5">电脑部</option>
+                                <option value="6">总经办</option>
+                                <option value="7">生产部</option>
+                                <option value="8">其他</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">职务</label>
+                        <div class="col-lg-10">
+                            <select class="form-control" id="job">
+                                <option selected="selected">--</option>
+                                <option value="0">文员</option>
+                                <option value="1">会计</option>
+                                <option value="2">跟单</option>
+                                <option value="3">秘书</option>
+                                <option value="4">司机</option>
+                                <option value="5">经理</option>
+                                <option value="6">助理</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="note" class="col-lg-2 control-label">备注</label>
+
+                        <div class="col-lg-10">
+                            <textarea class="form-control" rows="3" id="note"></textarea>
+                            <span class="help-block">申请原因</span>
+                        </div>
+                    </div>
+                
+                    <div class="form-group">
+                        <div class="col-lg-10 col-lg-offset-2">
+                            <button type="reset" class="btn btn-danger" onclick="App.hide_add('requdiv')">取消</button>
+                            <button type="submit" class="btn btn-success" onclick="App.request()">申请</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    <div class="bs-docs-section">
+        <div class="row">
+            <div id="ev" class="well bs-component">
+                <form class="form-horizontal">
+                    <fieldset>
+                        <legend>记录详情</legend>
+                        <h3 id="evname"></h3>
+                        <table  class="table table-striped table-responsive">
+                            <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>信用评价</th>
+                                <th>权重</th>
+                                <th>备注</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody id="evlist">
+                            </tbody>
+                        </table>
+                    
+                        <div class="form-group ev_button">
+                            <div class="col-lg-10 col-lg-offset-2">
+                                <button type="reset" class="btn btn-danger" onclick="App.hide_add('ev')">取消</button>
+                                <button type="submit" class="btn btn-success" onclick="App.show_add('adddiv');App.hide_add('ev');">添加</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="gs1" class="bs-component jumbotron gongshi">
+    <div class=" text-gongshi">
+        <h1>信用度</h1>
+
+        <p>指从社会信誉、经济状况、商品交易的履约情况等方面反映出来买卖遵约守信程度。买主跟卖者进行信用度评估，其目的就是要通过对卖主社会行为、经济实力、信守合约状况的考察，深入了解卖者，以便为是否确定客户关系提供依据，从而做出抉择。</p>
+
+        <p><a class="btn btn-primary btn-lg" onclick="App.show_add('gs2')">计算公式</a></p>
+    </div>
+</div>
+
+<div id="gs2" class="panel panel-info gongshi">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <h4 id="evname">
+                信用度 = 信用评价得分 × 成交金额权重
+            </h4>
+        </h3>
+    </div>
+    <div class="panel-body wenzi1">
+        <table  class="table table-striped table-responsive">
+            <thead>
+            <tr>
+                <th>所得评价</th>
+                <th>好评</th>
+                <th>中评</th>
+                <th>差评</th>
+            </tr>
+            </thead>
+            <tbody >
+            <tr>
+                <td>信用评价得分</td>
+                <td>+1</td>
+                <td>0</td>
+                <td>-1</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="panel-body wenzi2">
+        <table  class="table table-striped table-responsive">
+            <thead>
+            <tr>
+                <th>交易金额</th>
+                <th>0-1￥</th>
+                <th>1-200￥</th>
+                <th>200-1000￥</th>
+                <th>1000-5000￥</th>
+                <th>5000￥以上</th>
+            </tr>
+            </thead>
+            <tbody >
+            <tr>
+                <td>权重(分数)</td>
+                <td>0</td>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p class="chuangkou wenzi">例如：一笔交易中您得到信用评价是好评，成交金额为200元，则此次交易您得到的信用度为1×2 = 2</p>
+    <button type="reset" class="btn btn-success wenzi3" onclick="App.hide_add('gs2')">关闭</button>
+</div>
+<div id="bili" class="gongshi">
+    <h3>信用度统计</h3>
+    <div class="smart-body">
+    <p class="text-left">信用度>0</p>
+        <div class="progress progress-striped active animation-lg">
+            <div id="bili1" class="progress-bar progress-bar-info six-sec-ease-in-out" aria-valuetransitiongoal="75" style="width: 0%;"> 
+            </div>
+        </div>
+    </div>
+    <div class="smart-body">
+    <p class="text-left">信用度=0</p>
+        <div class="progress progress-striped active animation-lg">
+            <div id="bili2" class="progress-bar progress-bar-danger six-sec-ease-in-out" aria-valuetransitiongoal="75" style="width: 0%;">
+            </div>
+        </div>
+    </div>
+    <div class="smart-body">
+    <p class="text-left">信用度<0 </p>
+        <div class="progress progress-striped active animation-lg">
+            <div id="bili3" class="progress-bar progress-bar-success six-sec-ease-in-out" aria-valuetransitiongoal="75" style="width: 0%;">
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script src="http://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script>
+
+    <script src="js/web3.min.js"></script>
+
+    <script src="js/truffle-contract.js"></script>
+
+    <script src="js/app.js"></script>
+
+    <script src="js/todolist-prime.js"></script>
+</body>
+</html>
